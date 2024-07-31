@@ -1,0 +1,21 @@
+(WEEK - 1 )
+EXERCISE 2 : E-COMMERCE PLATFORM SEARCH FUNCTION
+1. Understand Asymptotic Notation:
+⦁	Explain Big o notation and how it helps in analyzing algorithms.
+Ans: Big O notation is a mathematical notation used to describe the upper bound or worst-case scenario of the runtime complexity of an algorithm in terms of the input size. It is used to analyze and compare algorithms' efficiency.
+⦁	Describe the best, average, worst-case scenarios for search operations.
+Ans: Best case is when there is a scenario where the search operation performs the fewest possible comparisons. For example, in linear search, the best-case occurs when the target element is the first element in the array. Average case represents the expected performance of the search operation over a random distribution of inputs. Worst case is when the search operation performs the maximum number of comparisons
+2. Analysis
+⦁	Compare the time complexity of Linear and Binary search algorithms.
+Ans: 
+
+Linear Search:
+Best-Case: O(1) 
+Average-Case: O(n) 
+Worst-Case: O(n) 
+Binary Search:
+Best-Case: O(1) 
+Average-Case: O(log n) 
+Worst-Case: O(log n) 
+⦁	Discuss which algorithm is more suitable for your platform and why.
+Ans: Linear search is easy to implement and does not require any preconditions like sorting. This makes it straightforward to use, especially when the dataset is small or when dealing with unsorted data. Binary search is highly efficient with a time complexity of O(log n), making it ideal for large datasets where quick search times are essential. It significantly reduces the number of comparisons needed to find a product compared to linear search.

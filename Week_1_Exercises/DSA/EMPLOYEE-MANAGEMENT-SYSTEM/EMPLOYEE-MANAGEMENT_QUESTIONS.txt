@@ -1,0 +1,17 @@
+(WEEK - 1 )
+EXERCISE 4 : EMPLOYEE MANAGEMENT SYSTEM
+1. Understanding Array Representation :
+Explain how arrays are represented in memory and their advantages.
+
+Ans : Arrays are stored in a contiguous block of memory. Each element is placed sequentially in memory, with no gaps in between. 
+Advantages : Arrays have a fixed size determined at the time of allocation. This size cannot be changed during the array’s lifetime.
+
+2. Analysis :
+Analyze the time complexity of each operation(add,search, traverse, delete).
+Ans : Add Operation- Time Complexity: O(1) 
+Search Operation- Time Complexity: O(n)
+Traverse Operation- Time Complexity: O(n) 
+Delete Operation- Time Complexity: O(n)
+
+Discuss the limitations of arrays and when to use them?
+Ans : Arrays have a fixed size, which means that once they are allocated, their size cannot be changed. This can lead to either wasted memory (if the array is too large) or insufficient space (if the array is too small). Deletion and insertion operations, especially in the middle of the array, can be difficult as they require shifting elements.

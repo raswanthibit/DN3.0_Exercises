@@ -1,0 +1,20 @@
+
+(WEEK - 1 )
+EXERCISE 3 : SORTING CUSTOMER ORDERS
+
+1.Understanding Sorting Algorithms
+Bubble Sort : Bubble sort is a simple algorithm where each pair of adjacent elements is compared, and the elements are swapped if they are in the wrong order. This process is repeated until the list is sorted.
+Insertion sort : Insertion sort builds the final sorted array one item at a time. It picks an element and inserts it into its correct position among the already sorted elements.
+Quick Sort: Quick sort is a divide-and-conquer algorithm that selects a "pivot" element and partitions the array into two sub-arrays, with elements less than the pivot on one side and elements greater than the pivot on the other. The process is then recursively applied to the sub-arrays.
+Merge Sort: Merge sort is a divide-and-conquer algorithm that splits the array into two halves, recursively sorts each half, and then merges the two sorted halves into a single sorted array.
+
+2.Analysis
+Bubble Sort:
+Time Complexity: O(n²) in the average and worst-case scenarios. 
+Bubble sort is inefficient for large datasets due to its quadratic time complexity. It makes many redundant comparisons and swaps, especially for nearly sorted data.
+Quick Sort:
+Time Complexity: O(n log n) on average
+Quick sort is highly efficient for large datasets due to its divide-and-conquer approach. It is generally faster than bubble sort because it reduces the problem size with each recursive call.
+Why Quick Sort is Generally Preferred Over Bubble Sort:
+Quick sort can handle large datasets more effectively, making it suitable for real-world applications, including sorting customer orders by total price.
+Quick sort's average-case time complexity of O(n log n) makes it significantly faster than bubble sort's O(n²), especially as the size of the data grows.

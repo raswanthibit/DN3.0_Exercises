@@ -1,0 +1,26 @@
+
+(WEEK - 1 )
+EXERCISE 5 : LIBRARY MANAGEMENT SYSTEM
+1. Understand Search Algorithms :
+Explain linear Search and Binary search algorithms.
+Ans : Linear search is the simplest search algorithm. It sequentially checks each element in the list until it finds the target value or reaches the end of the list.
+Binary search is an efficient algorithm that works on sorted lists. It repeatedly divides the search interval in half. If the target value is less than the middle element, it searches the left half; otherwise, it searches the right half.
+
+2. Analysis :
+Compare the time complexity of linear and binary search.
+Ans:
+Linear Search:
+Best-Case: O(1) 
+Average-Case: O(n)
+Worst-Case: O(n) 
+Binary Search:
+Best-Case: O(1) 
+Average-Case: O(log n)
+Worst-Case: O(log n) 
+
+Discuss when to use each algorithm based on the data set size and order.
+Ans:
+Linear Search is suitable for small or unsorted datasets. It's easy to implement and doesn't require the dataset to be sorted. Also useful when the dataset is dynamic, and the overhead of maintaining a sorted order outweighs the benefits of faster searches.
+Use linear search when the dataset is small or unsorted and the overhead of sorting is unnecessary.
+Binary Search is ideal for large, sorted datasets where the performance benefits of O(log n) are significant. It is more efficient than linear search for large datasets but requires the data to be sorted, which may add complexity in maintaining the dataset.
+Use binary search when dealing with large datasets that are sorted or can be easily maintained in a sorted order, providing significantly faster search times.

@@ -1,0 +1,28 @@
+
+(WEEK - 1 )
+EXERCISE 1 : INVENTORY MANAGEMENT SYSTEM
+
+1. Understand the problem :
+Explain why data structures and algorithms are essential in handling large inventories.
+Ans: Data structures and algorithms are crucial because they can handle large dynamic data and inventories. 
+They are responsible for quick access, modification, optimization and management of data. with the help of
+data structures and algorithms, its easy for maintaining and retreival of data.
+Discuss the types of data structures suitable for this problem.
+Ans: ArrayList and HashMap 
+ArrayList is useful for maintaining a dynamic list of products where frequent additions and deletions are 
+not the primary operations. HashMap is Ideal for situations where quick access, insertion, and deletion 
+are required. It allows constant time complexity (O(1)) for these operations on average.
+
+2. Analysis: 
+Analyze the time complexity of each operation(add,update,delete) in your chosen data structure.
+Ans: The add operation involves putting a new key-value pair into the HashMap. On average, 
+this operation has a time complexity of O(1).The update operation involves checking if the key 
+exists and then updating the value associated with the key and this operation also has a time 
+complexity of O(1). The delete operation involves removing a key-value pair from the HashMap 
+and has a time complexity of O(1).
+
+Discuss how you can optimize these operations.
+Ans: checking whether the load factor of the HashMap is managed properly. 
+A high load factor can lead to increased time complexity due to collisions, while 
+a low load factor can lead to wasted memory. For large updation or deletions, 
+consider batch operations to reduce the overhead of multiple individual operations.

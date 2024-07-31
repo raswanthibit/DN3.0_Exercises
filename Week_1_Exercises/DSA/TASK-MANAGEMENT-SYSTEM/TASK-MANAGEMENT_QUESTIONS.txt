@@ -1,0 +1,26 @@
+(WEEK - 1 )
+EXERCISE 5 : TASK MANAGEMENT SYSTEM
+
+1. Understand LinkedLists :
+Explain the different types of linked lists
+Ans : Singly Linked List:
+A singly linked list consists of nodes, each containing a data part and a reference (or pointer) to the next node in the sequence. It can only be traversed in one direction, from the head (first node) to the tail (last node). Adding, deleting, and searching elements typically involve iterating through the list from the head, making them O(n) operations. Useful for simple, linear data structures where only forward traversal is required.
+Doubly Linked List:
+A doubly linked list is similar to a singly linked list, but each node has two references: one pointing to the next node and another pointing to the previous node. It can be traversed in both directions, forward and backward.
+Although adding and deleting elements still require O(n) time in the worst case, having both forward and backward pointers can make certain operations (like removing the last node) more efficient, typically O(1).
+
+2. Analysis :
+Analyze the time complexity of Singly LinkedList and Doubly LinkedList.
+Ans: Time Complexity of Operations:
+Add Task:
+Time Complexity: O(n)
+Search Task:
+Time Complexity: O(n) 
+Traverse Tasks:
+Time Complexity: O(n) 
+Delete Task:
+Time Complexity: O(n)
+
+Discuss the advantages of linked Lists over arrays for dynamic data.
+Ans: Advantages of Linked Lists over arrays for dynamic data:
+Linked lists do not have a fixed size, unlike arrays. They can grow or shrink dynamically, which makes them ideal for applications where the number of elements can change frequently. In linked lists, adding or removing elements (especially at the beginning) can be done in constant time O(1) without the need to shift elements, as is required in arrays. Linked lists use memory efficiently, allocating space for elements as needed. Unlike arrays, where the memory is allocated upfront, linked lists use memory proportional to the number of elements.Since memory allocation in linked lists is dynamic, there is no wasted space as might be the case in arrays when they are not fully utilized.

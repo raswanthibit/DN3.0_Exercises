@@ -1,0 +1,20 @@
+
+(WEEK - 1 )
+EXERCISE 5 : FINANCIAL FORECASTING
+1. Understand Recursive Algorithm :
+Explain the concept of recursion and how it can simplify certain problems
+Ans : 
+Recursion is a programming technique where a function calls itself directly or indirectly to solve a problem. A recursive function typically has two main components:
+Base Case: The condition under which the recursion stops. This prevents infinite recursion and helps the function return a result.
+Recursive Case: The part of the function where it calls itself with modified parameters, gradually reducing the problem size until it reaches the base case.
+Recursive functions can often be more modular and easier to understand and maintain compared to their iterative counterparts.
+
+2. Analysis :
+Discuss the time complexity of your Recursive Algorithm
+Ans: The time complexity of this recursive algorithm is O(n).
+
+Explain how to optimize the recursive solution to avoid excessive computation.
+Ans: For avoiding multiple computations, especially in cases where the same values are recalculated multiple times, you can use Memoization. This technique involves 
+storing previously computed results in a data structure (like a hashmap or array) and reusing them when needed. If the recursive function is designed in a 
+Tail-recursive manner (where the recursive call is the last operation in the function), some languages and compilers can optimize it to run in constant space, 
+converting it into a loop internally.
