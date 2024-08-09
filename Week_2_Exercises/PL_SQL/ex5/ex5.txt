@@ -1,0 +1,57 @@
+CREATE TRIGGER UpdateCustomerLastModified
+ON Customers
+AFTER UPDATE
+AS
+BEGIN
+    UPDATE Customers
+    SET LastModified = GETDATE()
+    FROM Customers c
+    INNER JOIN inserted i ON c.CustomerID = i.CustomerID;
+END;
+CREATE TRIGGER LogTransaction
+ON Transactions
+AFTER INSERT
+AS
+BEGIN
+    INSERT INTO AuditLog (TransactionID, AccountID, Amount, TransactionDate, ActionType)
+    SELECT i.TransactionID, i.AccountID, i.Amount, GETDATE(), 'INSERT'
+    FROM inserted i;
+END;
+
+CREATE TRIGGER CheckTransactionRules
+ON Transactions
+INSTEAD OF INSERT
+AS
+BEGIN
+    DECLARE @AccountID INT;
+    DECLARE @Amount DECIMAL(18, 2);
+    DECLARE @Balance DECIMAL(18, 2);
+
+    SELECT @AccountID = i.AccountID, @Amount = i.Amount
+    FROM inserted i;
+
+    -- Check the balance for the account
+    SELECT @Balance = Balance
+    FROM Accounts
+    WHERE AccountID = @AccountID;
+
+    -- Ensure deposits are positive
+    IF @Amount >= 0
+    BEGIN
+        -- Insert the transaction
+        INSERT INTO Transactions (AccountID, Amount, TransactionDate)
+        VALUES (@AccountID, @Amount, GETDATE());
+    END
+    -- Ensure withdrawals do not exceed the balance
+    ELSE IF @Balance + @Amount >= 0
+    BEGIN
+        -- Insert the transaction
+        INSERT INTO Transactions (AccountID, Amount, TransactionDate)
+        VALUES (@AccountID, @Amount, GETDATE());
+    END
+    ELSE
+    BEGIN
+        -- Raise an error if the rules are violated
+        RAISERROR('Insufficient balance for withdrawal or invalid deposit.', 16, 1);
+    END
+END;

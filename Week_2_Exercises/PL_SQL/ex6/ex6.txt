@@ -1,0 +1,48 @@
+DECLARE
+    CURSOR GenerateMonthlyStatements IS
+        SELECT customer_id, transaction_date, transaction_amount
+        FROM transactions
+        WHERE transaction_date BETWEEN TRUNC(SYSDATE, 'MM') AND LAST_DAY(SYSDATE);
+    
+    customer_name VARCHAR2(100);
+    v_total_amount NUMBER := 0;
+
+BEGIN
+    FOR transaction_record IN GenerateMonthlyStatements LOOP
+      
+        SELECT name INTO customer_name
+        FROM customers
+        WHERE customer_id = transaction_record.customer_id;
+        
+        DBMS_OUTPUT.PUT_LINE('Customer: ' || customer_name || 
+                             ' | Date: ' || transaction_record.transaction_date || 
+                             ' | Amount: ' || transaction_record.transaction_amount);
+        
+        v_total_amount := v_total_amount + transaction_record.transaction_amount;
+    END LOOP;
+
+   
+    DBMS_OUTPUT.PUT_LINE('Total Amount for the Month: ' || v_total_amount);
+END;
+
+DECLARE
+    CURSOR ApplyAnnualFee IS
+        SELECT account_id, balance
+        FROM accounts;
+    
+    v_annual_fee NUMBER := 50; -- Assume a fixed annual fee
+
+BEGIN
+    FOR account_record IN ApplyAnnualFee LOOP
+        -- Deduct the annual fee
+        UPDATE accounts
+        SET balance = balance - v_annual_fee
+        WHERE account_id = account_record.account_id;
+        
+        DBMS_OUTPUT.PUT_LINE('Account ID: ' || account_record.account_id || 
+                             ' | New Balance: ' || (account_record.balance - v_annual_fee));
+    END LOOP;
+    
+    COMMIT; 
+END;
+

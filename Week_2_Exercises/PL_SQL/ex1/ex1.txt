@@ -1,0 +1,24 @@
+BEGIN
+    FOR customer_rec IN (SELECT customer_id, age FROM customers) LOOP
+        IF customer_rec.age > 60 THEN
+            UPDATE loans
+            SET interest_rate = interest_rate - (interest_rate * 0.01)
+            WHERE customer_id = customer_rec.customer_id;
+        END IF;
+    END LOOP;
+END;
+BEGIN
+    FOR customer_rec IN (SELECT customer_id, balance FROM customers) LOOP
+        IF customer_rec.balance > 10000 THEN
+            UPDATE customers
+            SET IsVIP = 'TRUE'
+            WHERE customer_id = customer_rec.customer_id;
+        END IF;
+    END LOOP;
+END;
+
+BEGIN
+    FOR loan_rec IN (SELECT customer_id, loan_due_date FROM loans WHERE loan_due_date <= SYSDATE + 30) LOOP
+        DBMS_OUTPUT.PUT_LINE('Reminder: Loan is due on ' || TO_CHAR(loan_rec.loan_due_date, 'DD-MON-YYYY') || ' for Customer ID: ' || loan_rec.customer_id);
+    END LOOP;
+END;

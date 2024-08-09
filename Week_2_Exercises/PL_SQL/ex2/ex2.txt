@@ -1,0 +1,23 @@
+CREATE OR REPLACE PROCEDURE SafeTransferFunds (
+    p_from_account_id IN NUMBER,
+    p_to_account_id IN NUMBER,
+    p_amount IN NUMBER
+) IS
+BEGIN
+    -- Begin the transaction
+    UPDATE accounts
+    SET balance = balance - p_amount
+    WHERE account_id = p_from_account_id;
+
+    UPDATE accounts
+    SET balance = balance + p_amount
+    WHERE account_id = p_to_account_id;
+
+    COMMIT;
+EXCEPTION
+    WHEN OTHERS THEN
+        -- Rollback the transaction in case of error
+        ROLLBACK;
+        -- Log the error message
+        DBMS_OUTPUT.PUT_LINE('Error during transfer: ' || SQLERRM);
+END SafeTransferFunds;

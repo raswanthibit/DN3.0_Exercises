@@ -1,0 +1,61 @@
+CREATE OR REPLACE PACKAGE CustomerManagement AS
+    PROCEDURE AddCustomer(p_customer_id IN NUMBER, p_name IN VARCHAR2, p_balance IN NUMBER);
+    PROCEDURE UpdateCustomer(p_customer_id IN NUMBER, p_name IN VARCHAR2);
+    FUNCTION GetCustomerBalance(p_customer_id IN NUMBER) RETURN NUMBER;
+END CustomerManagement;
+CREATE OR REPLACE PACKAGE BODY CustomerManagement AS
+
+    PROCEDURE AddCustomer(p_customer_id IN NUMBER, p_name IN VARCHAR2, p_balance IN NUMBER) IS
+    BEGIN
+        INSERT INTO customers (customer_id, name, balance)
+        VALUES (p_customer_id, p_name, p_balance);
+        DBMS_OUTPUT.PUT_LINE('Customer Added: ' || p_name);
+    END AddCustomer;
+
+    PROCEDURE UpdateCustomer(p_customer_id IN NUMBER, p_name IN VARCHAR2) IS
+    BEGIN
+        UPDATE customers
+        SET name = p_name
+        WHERE customer_id = p_customer_id;
+        DBMS_OUTPUT.PUT_LINE('Customer Updated: ' || p_name);
+    END UpdateCustomer;
+
+    FUNCTION GetCustomerBalance(p_customer_id IN NUMBER) RETURN NUMBER IS
+        v_balance NUMBER;
+    BEGIN
+        SELECT balance INTO v_balance
+        FROM customers
+        WHERE customer_id = p_customer_id;
+        RETURN v_balance;
+    END GetCustomerBalance;
+
+END CustomerManagement;
+CREATE OR REPLACE PACKAGE BODY EmployeeManagement AS
+
+    PROCEDURE HireEmployee(p_employee_id IN NUMBER, p_name IN VARCHAR2, p_salary IN NUMBER) IS
+    BEGIN
+        INSERT INTO employees (employee_id, name, salary)
+        VALUES (p_employee_id, p_name, p_salary);
+        DBMS_OUTPUT.PUT_LINE('Employee Hired: ' || p_name);
+    END HireEmployee;
+
+    PROCEDURE UpdateEmployee(p_employee_id IN NUMBER, p_name IN VARCHAR2, p_salary IN NUMBER) IS
+    BEGIN
+        UPDATE employees
+        SET name = p_name, salary = p_salary
+        WHERE employee_id = p_employee_id;
+        DBMS_OUTPUT.PUT_LINE('Employee Updated: ' || p_name);
+    END UpdateEmployee;
+
+    FUNCTION CalculateAnnualSalary(p_employee_id IN NUMBER) RETURN NUMBER IS
+        v_annual_salary NUMBER;
+    BEGIN
+        SELECT salary * 12 INTO v_annual_salary
+        FROM employees
+        WHERE employee_id = p_employee_id;
+        RETURN v_annual_salary;
+    END CalculateAnnualSalary;
+
+END EmployeeManagement;
+
+

@@ -1,0 +1,48 @@
+CREATE FUNCTION CalculateAge(@DateOfBirth DATE)
+RETURNS INT
+AS
+BEGIN
+    DECLARE @Age INT;
+    SET @Age = DATEDIFF(YEAR, @DateOfBirth, GETDATE())
+             - CASE WHEN DATEADD(YEAR, DATEDIFF(YEAR, @DateOfBirth, GETDATE()), @DateOfBirth) > GETDATE()
+                    THEN 1 ELSE 0 END;
+    RETURN @Age;
+END;
+
+CREATE FUNCTION CalculateMonthlyInstallment(
+    @LoanAmount DECIMAL(18, 2),
+    @AnnualInterestRate DECIMAL(5, 2),
+    @LoanDurationYears INT
+)
+RETURNS DECIMAL(18, 2)
+AS
+BEGIN
+    DECLARE @MonthlyInterestRate DECIMAL(18, 10);
+    DECLARE @NumberOfPayments INT;
+    DECLARE @MonthlyInstallment DECIMAL(18, 2);
+
+    SET @MonthlyInterestRate = @AnnualInterestRate / 12 / 100;
+    SET @NumberOfPayments = @LoanDurationYears * 12;
+
+    SET @MonthlyInstallment = (@LoanAmount * @MonthlyInterestRate) / 
+                              (1 - POWER(1 + @MonthlyInterestRate, -@NumberOfPayments));
+
+    RETURN @MonthlyInstallment;
+END;
+
+CREATE FUNCTION HasSufficientBalance(
+    @AccountID INT,
+    @Amount DECIMAL(18, 2)
+)
+RETURNS BIT
+AS
+BEGIN
+    DECLARE @Balance DECIMAL(18, 2);
+
+    SELECT @Balance = Balance FROM Accounts WHERE AccountID = @AccountID;
+
+    IF @Balance >= @Amount
+        RETURN 1;  -- Sufficient balance
+    ELSE
+        RETURN 0;  -- Insufficient balance
+END;
